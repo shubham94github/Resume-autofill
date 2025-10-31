@@ -1,0 +1,11 @@
+# ---------- requirements.txt ----------
+Flask==3.0.3
+Werkzeug==3.0.3
+PyPDF2==3.0.1
+# Optional: if you want better PDF parsing
+# pdfplumber==0.10.3
+# PyMuPDF==1.24.1
+
+# ---------- build_and_deploy_guide.md ----------
+
+# 🧩 Resume Autofill Flask App — Build & Deploy Guide
