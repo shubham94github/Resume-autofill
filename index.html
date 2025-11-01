@@ -1,0 +1,44 @@
+# ---------- templates/index.html ----------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Autofill Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background:#f8f9fa; }
+    .container { max-width: 800px; margin-top: 40px; }
+    .card { box-shadow:0 2px 8px rgba(0,0,0,0.1); border-radius:10px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card p-4">
+    <h2 class="text-center mb-3">Resume Autofill Assistant</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-info">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+    <form method="POST" action="/upload" enctype="multipart/form-data" class="mb-4">
+      <label class="form-label">Upload Resume (PDF)</label>
+      <div class="input-group">
+        <input class="form-control" type="file" name="resume" required>
+        <button class="btn btn-primary">Upload</button>
+      </div>
+    </form>
+    {% if resume %}
+    <ul class="list-group mb-3">
+      <li class="list-group-item"><b>Name:</b> {{ resume.name }}</li>
+      <li class="list-group-item"><b>Email:</b> {{ resume.email }}</li>
+      <li class="list-group-item"><b>Phone:</b> {{ resume.phone }}</li>
+      <li class="list-group-item"><b>LinkedIn:</b> {{ resume.linkedin }}</li>
+    </ul>
+    <a href="/edit" class="btn btn-outline-secondary">Edit Details</a>
+    {% else %}
+    <p>No resume uploaded yet.</p>
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>
